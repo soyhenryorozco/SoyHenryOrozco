@@ -51,7 +51,7 @@ Mi perfil es una mezcla única entre la lógica del código y el poder de la pal
 
 ## 📘 Proyectos destacados
 
-### 🔹 [KasApp](https://github.com/pi-rym/PM4BE-soyhenryorozco) (Plataforma inmobiliaria)
+### 🔹 [KasApp](https://kasapp.sytes.net/) (Plataforma inmobiliaria)
 Desarrollada en equipo, usando **NestJS + TypeORM + PostgreSQL**, permite que inmobiliarias creen su página personalizada, gestionen propiedades y agenden citas vía WhatsApp.
 
 ### 🔹 Proyecto de eCommerce
