@@ -423,37 +423,7 @@ function renderTelegram() {
 }
 
 function renderGallery() {
-  const grid = document.getElementById('photoGallery');
-  const siteUrl = 'https://soyhenryorozco.github.io/soyhenryorozco/';
-
-  CONFIG.gallery.forEach((photo, index) => {
-    const figure = document.createElement('figure');
-    figure.className = 'gallery-item reveal';
-
-    const media = document.createElement('div');
-    media.className = 'gallery-item__media';
-
-    const img = document.createElement('img');
-    img.src = photo.src;
-    img.alt = photo.alt;
-    img.title = photo.alt;
-    img.width = photo.width;
-    img.height = photo.height;
-    img.loading = index < 3 ? 'eager' : 'lazy';
-    img.decoding = 'async';
-    img.setAttribute('itemprop', 'image');
-
-    const caption = document.createElement('figcaption');
-    caption.className = 'gallery-item__credit';
-    caption.textContent = CONFIG.galleryCredit;
-
-    media.appendChild(img);
-    figure.appendChild(media);
-    figure.appendChild(caption);
-    grid.appendChild(figure);
-  });
-
-  injectGallerySchema(siteUrl);
+  injectGallerySchema('https://soyhenryorozco.github.io/soyhenryorozco/');
 }
 
 function injectGallerySchema(siteUrl) {

@@ -1366,6 +1366,12 @@ body {
   color: var(--text-muted);
 }
 
+.section--gallery .gallery-grid,
+.section--gallery .gallery-item {
+  opacity: 1;
+  transform: none;
+}
+
 /* Reveal */
 .reveal {
   opacity: 0;
