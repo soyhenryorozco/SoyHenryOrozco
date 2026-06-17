@@ -75,6 +75,24 @@ const CONFIG = {
 
   galleryCredit: 'Foto · @victor.quintero.fotografia',
 
+  imageLicense: {
+    creditText: 'Fotografía: Victor Quintero (@victor.quintero.fotografia)',
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    copyrightNotice:
+      '© Henry Orozco. Fotografía: Victor Quintero. Licencia Creative Commons Atribución 4.0 Internacional (CC BY 4.0).',
+    acquireLicensePage: 'https://creativecommons.org/licenses/by/4.0/',
+    creator: {
+      '@type': 'Person',
+      name: 'Victor Quintero',
+      alternateName: '@victor.quintero.fotografia',
+      url: 'https://www.instagram.com/victor.quintero.fotografia/',
+    },
+    copyrightHolder: {
+      '@type': 'Person',
+      name: 'Henry Orozco',
+    },
+  },
+
   gallery: [
     {
       src: 'images/galeria/henry-orozco-artista-musical-colombiano.jpg',
@@ -423,41 +441,56 @@ function renderTelegram() {
 }
 
 function renderGallery() {
+  if (document.getElementById('gallerySchema')) return;
   injectGallerySchema('https://soyhenryorozco.github.io/soyhenryorozco/');
+}
+
+function buildImageObject(siteUrl, photo) {
+  const { imageLicense } = CONFIG;
+  const imageUrl = `${siteUrl}${photo.src}`;
+  const imageId = `${siteUrl}#${photo.src.split('/').pop().replace('.jpg', '')}`;
+
+  return {
+    '@type': 'ImageObject',
+    '@id': imageId,
+    contentUrl: imageUrl,
+    url: imageUrl,
+    name: photo.alt,
+    description: photo.alt,
+    caption: CONFIG.galleryCredit,
+    width: photo.width,
+    height: photo.height,
+    creditText: imageLicense.creditText,
+    license: imageLicense.license,
+    copyrightNotice: imageLicense.copyrightNotice,
+    acquireLicensePage: imageLicense.acquireLicensePage,
+    creator: imageLicense.creator,
+    copyrightHolder: {
+      ...imageLicense.copyrightHolder,
+      url: siteUrl,
+    },
+  };
 }
 
 function injectGallerySchema(siteUrl) {
   const existing = document.getElementById('gallerySchema');
   if (existing) existing.remove();
 
+  const { imageLicense } = CONFIG;
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ImageGallery',
     '@id': `${siteUrl}#gallery`,
-    'name': 'Galería fotográfica de Henry Orozco',
-    'description': 'Colección oficial de retratos y fotografías de Henry Orozco, artista musical colombiano, comunicador social y creador de contenido.',
-    'url': `${siteUrl}#galeria`,
-    'inLanguage': 'es-CO',
-    'author': { '@id': `${siteUrl}#person` },
-    'associatedMedia': CONFIG.gallery.map((photo) => ({
-      '@type': 'ImageObject',
-      'contentUrl': `${siteUrl}${photo.src}`,
-      'url': `${siteUrl}${photo.src}`,
-      'name': photo.alt,
-      'description': photo.alt,
-      'caption': CONFIG.galleryCredit,
-      'width': photo.width,
-      'height': photo.height,
-      'creator': {
-        '@type': 'Person',
-        'name': 'victor.quintero.fotografia',
-        'alternateName': '@victor.quintero.fotografia',
-      },
-      'copyrightHolder': {
-        '@type': 'Person',
-        'name': 'Henry Orozco',
-      },
-    })),
+    name: 'Galería fotográfica de Henry Orozco',
+    description:
+      'Colección oficial de retratos y fotografías de Henry Orozco. Fotografías de Victor Quintero bajo licencia Creative Commons BY 4.0.',
+    url: `${siteUrl}#galeria`,
+    inLanguage: 'es-CO',
+    author: { '@id': `${siteUrl}#person` },
+    license: imageLicense.license,
+    acquireLicensePage: imageLicense.acquireLicensePage,
+    associatedMedia: CONFIG.gallery.map((photo) => buildImageObject(siteUrl, photo)),
   };
 
   const script = document.createElement('script');

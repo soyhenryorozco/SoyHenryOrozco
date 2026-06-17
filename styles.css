@@ -652,6 +652,26 @@ body {
   margin-top: 1.75rem;
 }
 
+.gallery-license {
+  margin-top: 1rem;
+  max-width: 42rem;
+  margin-inline: auto;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.gallery-license a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.gallery-license strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
 /* Content */
 .section--content {
   --content-radius: 10px;
