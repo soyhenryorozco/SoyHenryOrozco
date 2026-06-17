@@ -1583,7 +1583,11 @@ body {
   border-top: 1px solid var(--border);
 }
 
+.section--wiki .section-head,
 .section--wiki .wiki__body,
+.section--wiki .wiki__content,
+.section--wiki .wiki__press,
+.section--wiki .wiki__press-head,
 .section--wiki .press-grid,
 .section--wiki .press-card {
   opacity: 1;
@@ -1739,8 +1743,8 @@ body {
   }
 }
 
-/* Mobile */
-@media (max-width: 767px) {
+/* Mobile y tablet — menú hamburguesa para que todas las pestañas sean visibles */
+@media (max-width: 1023px) {
   .nav {
     grid-template-columns: 1fr auto;
   }
@@ -1768,6 +1772,7 @@ body {
     visibility: hidden;
     transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
     justify-self: stretch;
+    z-index: 99;
   }
 
   .nav__menu.open {
@@ -1781,7 +1786,9 @@ body {
     padding: 0.85rem 0;
     font-size: 1rem;
   }
+}
 
+@media (max-width: 767px) {
   .hero {
     min-height: 100svh;
   }

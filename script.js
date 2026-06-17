@@ -555,6 +555,7 @@ function initScrollReveal() {
   );
 
   elements.forEach((el) => {
+    if (el.closest('.section--wiki, .section--gallery')) return;
     el.classList.add('reveal');
     observer.observe(el);
   });
