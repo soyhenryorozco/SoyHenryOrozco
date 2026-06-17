@@ -48,6 +48,31 @@ const CONFIG = {
     },
   },
 
+  facebook: {
+    pageUrl: 'https://www.facebook.com/SoyHenryOrozco/',
+    handle: '@SoyHenryOrozco',
+    title: 'Fanpage oficial',
+    profile: {
+      photoUrl: 'images/profile.jpg',
+      name: 'Henry Orozco',
+      lead: 'Fanpage oficial de @SoyHenryOrozco. Comunicación, contenido, periodismo y proyectos musicales con sello colombiano.',
+      bio: 'Sígueme en Facebook para novedades, contenido y actualizaciones.',
+    },
+  },
+
+  telegram: {
+    channelUrl: 'https://t.me/henryorozco',
+    handle: '@henryorozco',
+    title: 'Canal oficial',
+    profile: {
+      photoUrl: 'images/profile.jpg',
+      name: 'Henry',
+      subscribers: '467 suscriptores',
+      lead: 'Canal oficial de @SoyHenryOrozco. Estoy verificado en todas mis redes sociales.',
+      bio: 'Contenido, novedades y comunicación directa en Telegram.',
+    },
+  },
+
   contact: [
     {
       label: 'Instagram',
@@ -273,6 +298,35 @@ function renderBlog() {
   document.getElementById('blogLink').href = blog.url;
 }
 
+function renderFacebook() {
+  const { facebook } = CONFIG;
+  const { profile } = facebook;
+
+  document.getElementById('facebookMeta').textContent =
+    `${facebook.title} · ${facebook.handle}`;
+
+  document.getElementById('facebookAvatar').src = profile.photoUrl;
+  document.getElementById('facebookName').textContent = profile.name;
+  document.getElementById('facebookLead').textContent = profile.lead;
+  document.getElementById('facebookBio').textContent = profile.bio;
+  document.getElementById('facebookLink').href = facebook.pageUrl;
+}
+
+function renderTelegram() {
+  const { telegram } = CONFIG;
+  const { profile } = telegram;
+
+  document.getElementById('telegramMeta').textContent =
+    `${telegram.title} · ${telegram.handle}`;
+
+  document.getElementById('telegramAvatar').src = profile.photoUrl;
+  document.getElementById('telegramName').textContent = profile.name;
+  document.getElementById('telegramStat').textContent = profile.subscribers;
+  document.getElementById('telegramLead').textContent = profile.lead;
+  document.getElementById('telegramBio').textContent = profile.bio;
+  document.getElementById('telegramLink').href = telegram.channelUrl;
+}
+
 function renderContact() {
   const container = document.getElementById('contactLinks');
 
@@ -372,6 +426,8 @@ function init() {
   renderInstagram();
   renderSpotify();
   renderBlog();
+  renderFacebook();
+  renderTelegram();
   renderContact();
   renderSocial();
   initNavigation();
