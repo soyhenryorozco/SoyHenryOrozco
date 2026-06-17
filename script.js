@@ -73,6 +73,101 @@ const CONFIG = {
     },
   },
 
+  galleryCredit: 'Foto · @victor.quintero.fotografia',
+
+  gallery: [
+    {
+      src: 'images/galeria/henry-orozco-artista-musical-colombiano.jpg',
+      alt: 'Henry Orozco artista musical colombiano',
+      width: 1284,
+      height: 1600,
+    },
+    {
+      src: 'images/galeria/henry-orozco-comunicador-social.jpg',
+      alt: 'Henry Orozco comunicador social colombiano',
+      width: 1286,
+      height: 1600,
+    },
+    {
+      src: 'images/galeria/henry-orozco-periodista-digital.jpg',
+      alt: 'Henry Orozco periodista digital en Colombia',
+      width: 1280,
+      height: 1600,
+    },
+    {
+      src: 'images/galeria/henry-orozco-creador-contenido.jpg',
+      alt: 'Henry Orozco creador de contenido digital',
+      width: 1288,
+      height: 1600,
+    },
+    {
+      src: 'images/galeria/henry-orozco-desarrollador-full-stack.jpg',
+      alt: 'Henry Orozco desarrollador full stack y creador digital',
+      width: 1284,
+      height: 1600,
+    },
+    {
+      src: 'images/galeria/henry-orozco-retrato-profesional.jpg',
+      alt: 'Henry Orozco retrato profesional SoyHenryOrozco',
+      width: 1288,
+      height: 1600,
+    },
+    {
+      src: 'images/galeria/henry-orozco-artista-antioquia.jpg',
+      alt: 'Henry Orozco artista musical en Antioquia Colombia',
+      width: 921,
+      height: 1371,
+    },
+    {
+      src: 'images/galeria/henry-orozco-soyhenryorozco.jpg',
+      alt: 'Henry Orozco SoyHenryOrozco artista y comunicador',
+      width: 1288,
+      height: 1600,
+    },
+    {
+      src: 'images/cover.jpg',
+      alt: 'Henry Orozco retrato editorial artista musical',
+      width: 1080,
+      height: 1350,
+    },
+    {
+      src: 'images/bio.jpg',
+      alt: 'Henry Orozco biografía comunicador social Antioquia',
+      width: 1080,
+      height: 1350,
+    },
+    {
+      src: 'images/hero.jpg',
+      alt: 'Henry Orozco artista musical creador de contenido Colombia',
+      width: 1080,
+      height: 1350,
+    },
+    {
+      src: 'images/profile.jpg',
+      alt: 'Henry Orozco perfil oficial SoyHenryOrozco',
+      width: 320,
+      height: 320,
+    },
+    {
+      src: 'images/gallery-1.jpg',
+      alt: 'Henry Orozco sesión fotográfica profesional Colombia',
+      width: 1080,
+      height: 1350,
+    },
+    {
+      src: 'images/gallery-2.jpg',
+      alt: 'Henry Orozco retrato artístico periodista digital',
+      width: 1080,
+      height: 1350,
+    },
+    {
+      src: 'images/gallery-3.jpg',
+      alt: 'Henry Orozco imagen oficial creador de contenido',
+      width: 1080,
+      height: 1350,
+    },
+  ],
+
   contact: [
     {
       label: 'Instagram',
@@ -327,6 +422,81 @@ function renderTelegram() {
   document.getElementById('telegramLink').href = telegram.channelUrl;
 }
 
+function renderGallery() {
+  const grid = document.getElementById('photoGallery');
+  const siteUrl = 'https://soyhenryorozco.github.io/soyhenryorozco/';
+
+  CONFIG.gallery.forEach((photo, index) => {
+    const figure = document.createElement('figure');
+    figure.className = 'gallery-item reveal';
+
+    const media = document.createElement('div');
+    media.className = 'gallery-item__media';
+
+    const img = document.createElement('img');
+    img.src = photo.src;
+    img.alt = photo.alt;
+    img.title = photo.alt;
+    img.width = photo.width;
+    img.height = photo.height;
+    img.loading = index < 3 ? 'eager' : 'lazy';
+    img.decoding = 'async';
+    img.setAttribute('itemprop', 'image');
+
+    const caption = document.createElement('figcaption');
+    caption.className = 'gallery-item__credit';
+    caption.textContent = CONFIG.galleryCredit;
+
+    media.appendChild(img);
+    figure.appendChild(media);
+    figure.appendChild(caption);
+    grid.appendChild(figure);
+  });
+
+  injectGallerySchema(siteUrl);
+}
+
+function injectGallerySchema(siteUrl) {
+  const existing = document.getElementById('gallerySchema');
+  if (existing) existing.remove();
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ImageGallery',
+    '@id': `${siteUrl}#gallery`,
+    'name': 'Galería fotográfica de Henry Orozco',
+    'description': 'Colección oficial de retratos y fotografías de Henry Orozco, artista musical colombiano, comunicador social y creador de contenido.',
+    'url': `${siteUrl}#galeria`,
+    'inLanguage': 'es-CO',
+    'author': { '@id': `${siteUrl}#person` },
+    'associatedMedia': CONFIG.gallery.map((photo) => ({
+      '@type': 'ImageObject',
+      'contentUrl': `${siteUrl}${photo.src}`,
+      'url': `${siteUrl}${photo.src}`,
+      'name': photo.alt,
+      'description': photo.alt,
+      'caption': CONFIG.galleryCredit,
+      'width': photo.width,
+      'height': photo.height,
+      'creator': {
+        '@type': 'Person',
+        'name': 'victor.quintero.fotografia',
+        'alternateName': '@victor.quintero.fotografia',
+      },
+      'copyrightHolder': {
+        '@type': 'Person',
+        'name': 'Henry Orozco',
+      },
+    })),
+  };
+
+  const script = document.createElement('script');
+  script.id = 'gallerySchema';
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
+}
+
 function renderContact() {
   const container = document.getElementById('contactLinks');
 
@@ -428,6 +598,7 @@ function init() {
   renderBlog();
   renderFacebook();
   renderTelegram();
+  renderGallery();
   renderContact();
   renderSocial();
   initNavigation();
