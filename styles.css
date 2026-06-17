@@ -1372,6 +1372,224 @@ body {
   transform: none;
 }
 
+/* WikiPerioData */
+.section--wiki {
+  background: var(--bg);
+  border-block: 1px solid var(--border);
+  padding-block: clamp(4.5rem, 11vw, 6.5rem);
+}
+
+.section--wiki .wiki.container {
+  width: min(1080px, 100% - 2.5rem);
+}
+
+.section--wiki .section-head {
+  margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.wiki__body {
+  max-width: 46rem;
+  margin-inline: auto;
+  margin-bottom: clamp(3.5rem, 8vw, 5rem);
+}
+
+.wiki__meta {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.wiki__lead {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  line-height: 1.75;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.wiki__lead a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.wiki__content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 2.75rem);
+}
+
+.wiki__block {
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--border);
+}
+
+.wiki__heading {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.wiki__subheading {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.wiki__block p,
+.wiki__media p {
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.8vw, 1.08rem);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.wiki__block p:last-child,
+.wiki__media p:last-child {
+  margin-bottom: 0;
+}
+
+.wiki__media {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.35rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+.wiki__article-list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.wiki__article-list--bullets {
+  list-style: disc;
+}
+
+.wiki__article-list a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 98, 0.35);
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.wiki__article-list a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.wiki__press-head {
+  text-align: center;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.wiki__press-title {
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1.25rem;
+}
+
+.press-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.35rem 1.4rem 1.25rem;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  min-height: 11rem;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.press-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 169, 98, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.press-card--eltiempo { border-top-color: #c8102e; }
+.press-card--elespectador { border-top-color: #00a651; }
+.press-card--las2orillas { border-top-color: #e85d04; }
+.press-card--alponiente { border-top-color: #3a86ff; }
+.press-card--conmarcapropia { border-top-color: #8338ec; }
+.press-card--diariosocial { border-top-color: #ff006e; }
+.press-card--dailymotion { border-top-color: #00d4ff; }
+.press-card--antnoticias { border-top-color: #ffd60a; }
+
+.press-card__outlet {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.press-card__title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  flex: 1;
+}
+
+.press-card__title a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.press-card__title a:hover {
+  color: var(--accent);
+}
+
+.press-card__date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.press-card__author {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.press-card__type {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 98, 0.75);
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.section--wiki .wiki__body,
+.section--wiki .press-grid,
+.section--wiki .press-card {
+  opacity: 1;
+  transform: none;
+}
+
 /* Reveal */
 .reveal {
   opacity: 0;
